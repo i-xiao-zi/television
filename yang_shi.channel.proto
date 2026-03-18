@@ -1,0 +1,150 @@
+syntax = "proto3";
+package channel;
+
+// ========== 依赖类型 ==========
+// 来自 imgtagModel 的定义
+message Imgtag {
+  string id = 1;
+  string text = 2;
+}
+
+message ImgtagVer {
+  repeated Imgtag tag_1 = 1;
+  repeated Imgtag tag_2 = 2;
+  repeated Imgtag tag_3 = 3;
+  repeated Imgtag tag_4 = 4;
+}
+
+// 来自 TvChannelListData 的定义
+message TvChannelListData {
+  string dataType = 1;
+  string channelName = 2;
+  string channelCode = 3;
+  string pid = 4;
+  string tvLogo = 5;
+  string streamId = 6;
+  bool isVip = 7;
+  bool is4K = 8;
+  string timeShiftReviewFlag = 9;
+  repeated string programDates = 10;
+  string channelType = 11;
+  string selectTvLogo = 12;
+  string coverUrl = 13;
+  bool isLimitedFree = 14;
+  repeated uint32 viewRights = 15;
+  ImgtagVer imgtagVer = 16;
+  bool isScreenFlag = 17;
+  string payType = 18;
+}
+
+message Action {
+  string id = 1;
+  string actionType = 2;
+  string targetTitle = 3;
+  string secondId = 4;
+}
+
+message RecommendApiData {
+  string dataType = 1;
+  string sceneId = 2;
+  string categoryIds = 3;
+  int32 recommendNum = 4;
+  string path = 5;
+  string isFilter = 6;
+  repeated RecommendApiManualData manualDataList = 7;
+  string apiAction = 8;
+}
+
+message RecommendApiManualData {
+  Action action = 1;
+  string dataType = 2;
+  string title = 3;
+  string subTitle = 4;
+  string coverUrl = 5;
+  string cpId = 6;
+  string cpName = 7;
+  string cpAvatar = 8;
+  string vid = 9;
+  string cid = 10;
+  bool isVip = 11;
+  uint32 duration = 12;
+  uint32 position = 13;
+  ImgtagVer imgtagVer = 14;
+  uint32 vidNum = 15;
+  uint32 updateNum = 16;
+  string payType = 17;
+}
+
+message VipModuleData {
+  string dataType = 1;
+  string displayText = 2;
+}
+
+message ActivityData {
+  string picture = 1;
+}
+
+// ========== 当前主要消息 ==========
+message Response {
+  uint32 code = 1;
+  Data data = 2;
+  string message = 3;
+}
+
+message Data {
+  string feedId = 1;
+  repeated Module feedModuleList = 2;
+}
+
+message Module {
+  string moduleId = 1;
+  string moduleType = 2;
+  repeated ModuleData dataList = 3;
+  string title = 4;
+  string bgColor = 5;
+  string bg = 6;
+  int32 row = 7;
+  int32 rowNum = 8;
+  bool showMore = 9;
+  string showMoreUrl = 10;
+  bool showChange = 11;
+  bool showPagination = 12;
+  string dataSource = 13;
+  RecommendApiData dataRecommendApi = 14;
+  repeated TvChannelListData dataTvChannelList = 15;
+  string exString = 16;
+  string titlePic = 17;
+  VipModuleData dataVipModule = 18;
+  string exString2 = 19;
+  string titleIcon = 20;
+  string styleType = 21;
+  ActivityData dataActivity = 22;
+}
+
+message ModuleData {
+  Action action = 1;
+  string dataType = 2;
+  string title = 3;
+  string subTitle = 4;
+  string coverUrl = 5;
+  string topBarColor = 6;
+  string cpId = 7;
+  string cpName = 8;
+  string cpAvatar = 9;
+  bool isVip = 10;
+  string playVid = 11;
+  string vid = 12;
+  string cid = 13;
+  string pid = 14;
+  string lid = 15;
+  string linkUrl = 16;
+  uint32 duration = 17;
+  string exString = 18;
+  ImgtagVer imgtagVer = 19;
+  uint32 vidNum = 20;
+  uint32 updateNum = 21;
+  string exString2 = 22;
+  string coverUrl1 = 23;
+  string periods = 24;
+  string payType = 25;
+}

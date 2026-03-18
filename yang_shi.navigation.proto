@@ -1,0 +1,27 @@
+syntax = "proto3";
+package navigation;
+
+message Response {
+  uint32 code = 1;
+  Data data = 2;
+  string message = 3;
+}
+
+message Data {
+  string defaultChannelId = 1;
+  repeated Channel tabList = 2;
+  uint32 displayNum = 3;
+}
+
+message Channel {
+  string name = 1;
+  string channelId = 2;
+  string channelType = 3;
+  string feedId = 4;
+  string h5Url = 5;
+  string topBarColor = 6;
+  string selectColor = 7;
+  string childNavKey = 8;
+  string customChannelKey = 9;
+  uint32 channelTag = 10;
+}
